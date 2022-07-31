@@ -100,6 +100,19 @@ export function update_org_settings_menu_item() {
 
 export function initialize() {
     const rendered_gear_menu = render_gear_menu({
+        realm_name: page_params.realm_name,
+        realm_uri: new URL(page_params.realm_uri).hostname,
+        is_owner: page_params.is_owner,
+        is_admin: page_params.is_admin,
+        is_self_hosted: page_params.realm_plan_type === 1,
+        is_plan_limited: page_params.realm_plan_type === 2,
+        is_plan_standard: page_params.realm_plan_type === 3,
+        is_plan_standard_sponsored_for_free: page_params.realm_plan_type === 4,
+        is_business_org: page_params.realm_org_type === 10,
+        is_education_org: page_params.realm_org_type === 30 || page_params.realm_org_type === 35,
+        standard_plan_name: "Zulip Cloud Standard",
+        server_needs_upgrade: page_params.server_needs_upgrade,
+        zulip_version: page_params.zulip_version,
         apps_page_url: page_params.apps_page_url,
         can_invite_others_to_realm: settings_data.user_can_invite_others_to_realm(),
         corporate_enabled: page_params.corporate_enabled,
